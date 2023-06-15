@@ -73,14 +73,23 @@ class ZonaDeCoberturaTestCase {
 	}
 	 
 	@Test 
-	public void verificoQueLaZonaDeCobertura2_SeSolapaCon_ZonaDeCobertura3() {
+	public void verificoQueDeLaListaDeZonasQueMeDan_SoloSeSolapanLa2Y3() {
 		listaDeZonas.add(zonaDeCobertura2);
 		listaDeZonas.add(zonaDeCobertura3);
 		listaDeZonas.add(zonaDeCobertura4);
 		
-		when(zonaDeCobertura2.getRadioEnKM()).thenReturn(300d);
+		when(zonaDeCobertura2.getRadioEnKM()).thenReturn(300d); 
 		when(zonaDeCobertura3.getRadioEnKM()).thenReturn(280d);
 		when(zonaDeCobertura4.getRadioEnKM()).thenReturn(1d);
+		
+		when(ubicacion1.getLatitud()).thenReturn(20d); 
+		when(ubicacion1.getLongitud()).thenReturn(20d);
+		when(ubicacion2.getLatitud()).thenReturn(21d);
+		when(ubicacion2.getLongitud()).thenReturn(21d);
+		
+		when(ubicacion.getLatitud()).thenReturn(30129d);
+		when(ubicacion.getLongitud()).thenReturn(30129d); 
+		
 		when(zonaDeCobertura2.getEpicentro()).thenReturn(ubicacion1);
 		when(zonaDeCobertura3.getEpicentro()).thenReturn(ubicacion2);
 		when(zonaDeCobertura4.getEpicentro()).thenReturn(ubicacion);
@@ -88,12 +97,12 @@ class ZonaDeCoberturaTestCase {
 		
 		ArrayList<ZonaDeCobertura> zonasSolapadas = new ArrayList<ZonaDeCobertura>();
 		zonasSolapadas	=	zonaDeCobertura1.zonasQueSeSolapan(listaDeZonas);
-		 
 
+ 
 		assertTrue(zonasSolapadas.contains(zonaDeCobertura2));
 		assertTrue(zonasSolapadas.contains(zonaDeCobertura3));
-		 
-	}   
+		assertEquals(2, zonasSolapadas.size()); 
+	}
 	
 	
 	
