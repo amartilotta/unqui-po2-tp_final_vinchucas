@@ -78,7 +78,7 @@ public class Usuario {
 		int contador = 0;
 		LocalDate fechaActual = LocalDate.now();
 		for ( Muestra muestra : listaDeMuestrasPosteadas) {
-			if (muestra.fechaCreacion().isAfter(fechaActual.minusDays(30))  ) {
+			if (muestra.getFechaCreacion().isAfter(fechaActual.minusDays(30))  ) {
 				contador ++;
 			}
 		}
@@ -94,5 +94,12 @@ public class Usuario {
 			}
 		}
 		return contador;
+	}
+
+
+
+	public boolean esExperto() {
+
+		return this.nivel.esExperto();
 	}
 }
